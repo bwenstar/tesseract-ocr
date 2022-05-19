@@ -1,0 +1,17 @@
+version: '3.2'
+services:
+
+###############################################################################
+# tessocr service
+###############################################################################
+
+  tessocr:
+      build:
+        context: .
+        dockerfile: ./Dockerfile.bta
+      volumes:
+        - ./spin.sh:/home/work/spin.sh
+        - ./app:/home/work/app
+      entrypoint: /home/work/spin.sh
+      container_name: tesseract_ocr
+

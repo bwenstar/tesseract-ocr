@@ -1,0 +1,23 @@
+#
+# Tesseract 4 OCR Runtime Environment - Docker Container
+#
+
+FROM ubuntu:18.04
+
+RUN apt-get update && \
+    apt-get install -y \
+    software-properties-common && \
+    add-apt-repository -y ppa:alex-p/tesseract-ocr && \
+    apt-get install -y \
+    tesseract-ocr-all \
+    python3-pil \
+    git \
+    python3-pip \
+    wget && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN mkdir /home/work
+RUN git clone https://github.com/madmaze/pytesseract.git
+RUN cd pytesseract
+RUN pip3 install -U pytesseract
+WORKDIR /home/work
